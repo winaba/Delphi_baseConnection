@@ -18,6 +18,8 @@ begin
   conn.Activated := true;
 
   dbGridBase.DataSource := conn.DataSource;
+
+  mmBase.Lines.Text := conn.DataJson;
 end;
 
 ```
