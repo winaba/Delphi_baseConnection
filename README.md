@@ -2,7 +2,7 @@
 
 Class usage example:
  
-uses uClassDBDataSet;
+```uses uClassDBDataSet;
 
 var
   conn : TBaseDBDataSet;
@@ -20,3 +20,4 @@ begin
   dbGridBase.DataSource := conn.DataSource;
 end;
 
+```
