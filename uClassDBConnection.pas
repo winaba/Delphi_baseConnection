@@ -3,7 +3,7 @@ unit uClassDBConnection;
 interface
 
 uses
-  Data.SqlExpr, Data.DBXFirebird;
+  Data.SqlExpr, Data.DBXFirebird, uClassWorkIni;
 
 type
 
@@ -39,10 +39,13 @@ Var
 { TBaseDBConnection }
 
 constructor TBaseDBConnection.Create;
+  var
+    ini : TBaseWorkIni;
 begin
+
   sqlConn := TSQLConnection.Create(nil);
 
-//  sqlConn := dmBase.SQLConnection1;
+  ini := TBaseWorkIni.create;
 
   with sqlConn do
   begin
@@ -52,9 +55,9 @@ begin
     GetDriverFunc := 'getSQLDriverINTERBASE';
     VendorLib := 'fbclient.dll';
     Params.Values['SQLDialect'] := '3';
-    Params.Values['Database'] := 'E:\projetos\delphi\basePOO\base\base.fdb';
-    Params.Values['User_Name'] := 'SYSDBA';
-    Params.Values['Password'] := 'masterkey';
+    Params.Values['Database'] := ini.path;
+    Params.Values['User_Name'] := ini.username;
+    Params.Values['Password'] := ini.password;;
     LoginPrompt := False;
     Connected := true;
   end;
